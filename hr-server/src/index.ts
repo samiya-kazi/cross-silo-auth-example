@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import config from './config';
+import authRouter from './routers/auth.router';
 
 const app : Express = express();
 
@@ -10,6 +11,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use('/auth', authRouter);
 
 (async function bootstrap () {
   try {

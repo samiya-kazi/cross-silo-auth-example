@@ -3,7 +3,7 @@ import UserLogin from "./userLogin.model";
 
 export async function findUserLoginByEmail (email: string) {
   try {
-    const login = await UserLogin.find({ email });
+    const login = await UserLogin.findOne({ email });
     return login;
   } catch (error) {
     console.log(error);
