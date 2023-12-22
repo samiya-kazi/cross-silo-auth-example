@@ -11,7 +11,7 @@ export async function login (req: Request, res: Response) {
     if (validateLoginData({ email, password, service })) {
       const { user } = await hrLogin({ email, password, service });
 
-      const token = jwt.sign({ id: user._id }, config.JWT_SECRET, {
+      const token = jwt.sign({ id: user._id, service }, config.JWT_SECRET, {
         expiresIn: "7d",
       });
 
