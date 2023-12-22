@@ -35,7 +35,7 @@ export async function signUp (req: Request, res: Response) {
     } else res.status(400).send({message: 'Invalid data.'});
   } catch (error) {
     console.log(error);
-    res.status(500).send({message: error})
+    res.status(500).send({ message: (error as Error).message });
   }
 }
 
@@ -61,6 +61,6 @@ export async function login (req: Request, res: Response) {
     } else res.status(400).send({ message: 'Invalid data.' });
   } catch (error) {
     console.log(error);
-    res.status(500).send({message: error})
+    res.status(500).send({ message: (error as Error).message });
   }
 }

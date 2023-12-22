@@ -25,6 +25,6 @@ export async function postServiceAccess (req: Request, res: Response) {
     } else res.status(400).send({ message: 'Invalid user ID or services.'})
   } catch (error) {
     console.log(error);
-    res.status(500).send({message: error})
+    res.status(500).send({ message: (error as Error).message });
   }
 }
