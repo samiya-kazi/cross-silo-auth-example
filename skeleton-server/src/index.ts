@@ -1,6 +1,7 @@
 import express, { Express } from 'express';
 import cors from 'cors';
 import config from './config';
+import serviceAuthRouter from './routers/serviceAuth.router';
 
 const app : Express = express();
 
@@ -9,5 +10,6 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use('/service-auth', serviceAuthRouter);
 
 app.listen(config.PORT, () => console.log('[server]: Server is listening on port', config.PORT));
