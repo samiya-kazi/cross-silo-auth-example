@@ -28,3 +28,19 @@ export async function postServiceAccess (req: Request, res: Response) {
     res.status(500).send({ message: (error as Error).message });
   }
 }
+
+export async function checkServiceAccess (req: Request, res: Response) {
+  try {
+    const { userId, service } = req.body;
+    const user = await findUserById(userId);
+    if (user && typeof service === 'string') {
+      const serviceAccess = await findUserServiceAccess(user._id);
+      if (serviceAccess && (serviceAccess.services.includes("all") || serviceAccess.services.includes(service))) {
+        res.status(200).send({ status: 'success', auth: true });
+      } else res.status(400).send({ status: 'fail', auth: false });
+    } else res.status(400).send({ message: 'Invalid user ID or services.'})
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: (error as Error).message });
+  }
+}

@@ -6,7 +6,9 @@ import serviceAuthRouter from './routers/serviceAuth.router';
 const app : Express = express();
 
 app.use(cors({
-  origin: config.CORS_ORIGIN.split(',')
+  origin: config.CORS_ORIGIN.split(','),
+  credentials: true,
+  exposedHeaders: ['Authorization']
 }));
 
 app.use(express.json());

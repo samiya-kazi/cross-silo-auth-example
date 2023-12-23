@@ -11,3 +11,14 @@ export async function hrLogin (data : { email: string, password: string, service
     throw new Error((error as AxiosError<{message: string}>).response?.data.message);
   }
 }
+
+
+export async function hrServiceCheck (data : { userId: string, service: string }) {
+  try {
+    const res = await axios.post<{status: string, auth: boolean}>(config.HR_BASE_URL + '/access/check', data);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error((error as AxiosError<{message: string}>).response?.data.message);
+  }
+}
