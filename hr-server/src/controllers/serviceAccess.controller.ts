@@ -47,3 +47,19 @@ export async function checkServiceAccess (req: Request, res: Response) {
     res.status(500).send({ message: (error as Error).message });
   }
 }
+
+
+export async function getAccessibleServicesForUser (req: Request, res: Response) {
+  try {
+    const { id } = req.params;
+
+    const serviceAccess = await findUserServiceAccess(id);
+    if (serviceAccess) {
+      if (serviceAccess.services.includes('all')) res.send({ services: ["pos", "kds", "inventory", "menu-builder", "hr"]});
+      else res.send({ services: serviceAccess.services});
+    } else res.status(400).send({ message: 'Invalid user ID or services.'});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: (error as Error).message });
+  }
+}

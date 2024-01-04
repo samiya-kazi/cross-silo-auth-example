@@ -22,3 +22,14 @@ export async function hrServiceCheck (data : { userId: string, service: string }
     throw new Error((error as AxiosError<{message: string}>).response?.data.message);
   }
 }
+
+
+export async function hrServiceList (userId: string) {
+  try {
+    const res = await axios.get<{services: string[]}>(config.HR_BASE_URL + '/access/service/' + userId);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error((error as AxiosError<{message: string}>).response?.data.message);
+  }
+}
