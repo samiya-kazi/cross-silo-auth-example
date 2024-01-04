@@ -475,141 +475,6 @@
 					"name": "Service Auth",
 					"item": [
 						{
-							"name": "Login",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"samiya@projectcode.me\",\r\n    \"password\": \"samiyakazi123\",\r\n    \"service\": \"pos\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "http://localhost:5000/service-auth/login"
-							},
-							"response": [
-								{
-									"name": "Login - Success",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"samiya@projectcode.me\",\r\n    \"password\": \"samiyakazi123\",\r\n    \"service\": \"pos\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": "http://localhost:5000/service-auth/login"
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "X-Powered-By",
-											"value": "Express"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Authorization",
-											"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODQwNGQ5MmRmMDg2OWE0NWM5Yzc2ZiIsInNlcnZpY2UiOiJwb3MiLCJpYXQiOjE3MDMyNjg1MjIsImV4cCI6MTcwMzg3MzMyMn0.Xjou8KI2696yVtyAxHuR23duinI43NZBIBPV-gCWsSA"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json; charset=utf-8"
-										},
-										{
-											"key": "Content-Length",
-											"value": "138"
-										},
-										{
-											"key": "ETag",
-											"value": "W/\"8a-nkawMvzPE/MQ8PkkpG5JmndF2s4\""
-										},
-										{
-											"key": "Date",
-											"value": "Fri, 22 Dec 2023 18:08:42 GMT"
-										},
-										{
-											"key": "Connection",
-											"value": "keep-alive"
-										},
-										{
-											"key": "Keep-Alive",
-											"value": "timeout=5"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"status\": \"success\",\n    \"user\": {\n        \"_id\": \"658404d92df0869a45c9c76f\",\n        \"name\": \"Samiya Kazi\",\n        \"email\": \"samiya@projectcode.me\",\n        \"role\": \"admin\",\n        \"__v\": 0\n    }\n}"
-								},
-								{
-									"name": "Login - Error",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"samiya@projectcode.me\",\r\n    \"password\": \"samiyakazi1234\",\r\n    \"service\": \"pos\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": "http://localhost:5000/service-auth/login"
-									},
-									"status": "Internal Server Error",
-									"code": 500,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "X-Powered-By",
-											"value": "Express"
-										},
-										{
-											"key": "Vary",
-											"value": "Origin"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json; charset=utf-8"
-										},
-										{
-											"key": "Content-Length",
-											"value": "46"
-										},
-										{
-											"key": "ETag",
-											"value": "W/\"2e-3zN3DxIAbUT5d7AUhL5Oo2luNoQ\""
-										},
-										{
-											"key": "Date",
-											"value": "Fri, 22 Dec 2023 17:59:05 GMT"
-										},
-										{
-											"key": "Connection",
-											"value": "keep-alive"
-										},
-										{
-											"key": "Keep-Alive",
-											"value": "timeout=5"
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"message\": \"Invalid password for this login.\"\n}"
-								}
-							]
-						},
-						{
 							"name": "Service auth verification",
 							"request": {
 								"auth": {
@@ -677,6 +542,445 @@
 									],
 									"cookie": [],
 									"body": "{\n    \"auth\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Redirect user to service",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODQwNGQ5MmRmMDg2OWE0NWM5Yzc2ZiIsInNlcnZpY2UiOiJza2VsZXRvbiIsImlhdCI6MTcwNDM1OTk1MCwiZXhwIjoxNzA0OTY0NzUwfQ.xD80tGXJDFZiRY9dYlcjcNZjjdQuD3Obrb_BYFtAXy0"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/service-auth/redirect/:service",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"service-auth",
+										"redirect",
+										":service"
+									],
+									"variable": [
+										{
+											"key": "service",
+											"value": "pos"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Redirect user to service - Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5000/service-auth/redirect/:service",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"service-auth",
+												"redirect",
+												":service"
+											],
+											"variable": [
+												{
+													"key": "service",
+													"value": "pos"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Access-Control-Expose-Headers",
+											"value": "Authorization"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "99"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"63-bbrYZgAaq2dDormwj9Q4Lbci4bs\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 04 Jan 2024 10:34:17 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"redirect\": \"http://localhost:4001/auth-redirect?code=659689a9a64037cf7672990b\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Get token from code",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/service-auth/token/:code",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"service-auth",
+										"token",
+										":code"
+									],
+									"variable": [
+										{
+											"key": "code",
+											"value": "659689a9a64037cf7672990b"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get token from code - Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:5000/service-auth/token/:code",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "5000",
+											"path": [
+												"service-auth",
+												"token",
+												":code"
+											],
+											"variable": [
+												{
+													"key": "code",
+													"value": "659689a9a64037cf7672990b"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Access-Control-Expose-Headers",
+											"value": "Authorization"
+										},
+										{
+											"key": "Authorization",
+											"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODQwNGQ5MmRmMDg2OWE0NWM5Yzc2ZiIsInNlcnZpY2UiOiJwb3MiLCJpYXQiOjE3MDQzNjQ0NTcsImV4cCI6MTcwNDk2OTI1N30.X2OvrrLJPiQOVRqccJQlhOCfPbdI8msl6aoYKNPpu8s"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "32"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"20-wkOxQS+bTSj6smvCAuwhsgQVACA\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 04 Jan 2024 10:35:19 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"auth\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"samiya@projectcode.me\",\r\n    \"password\": \"samiyakazi123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:5000/auth/login"
+							},
+							"response": [
+								{
+									"name": "Login - Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"samiya@projectcode.me\",\r\n    \"password\": \"samiyakazi123\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "http://localhost:5000/auth/login"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Access-Control-Expose-Headers",
+											"value": "Authorization"
+										},
+										{
+											"key": "Authorization",
+											"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODQwNGQ5MmRmMDg2OWE0NWM5Yzc2ZiIsInNlcnZpY2UiOiJza2VsZXRvbiIsImlhdCI6MTcwNDM1OTgyNSwiZXhwIjoxNzA0OTY0NjI1fQ.120soI8nPgZI6Glhgm2tspMRERWJxHFMHX_QvvFLHe8"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "138"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"8a-nkawMvzPE/MQ8PkkpG5JmndF2s4\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 04 Jan 2024 09:17:05 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"user\": {\n        \"_id\": \"658404d92df0869a45c9c76f\",\n        \"name\": \"Samiya Kazi\",\n        \"email\": \"samiya@projectcode.me\",\n        \"role\": \"admin\",\n        \"__v\": 0\n    }\n}"
+								},
+								{
+									"name": "Login - Error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"samiya@projectcode.me\",\r\n    \"password\": \"samiyakazi12\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "http://localhost:5000/auth/login"
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Access-Control-Expose-Headers",
+											"value": "Authorization"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "46"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2e-3zN3DxIAbUT5d7AUhL5Oo2luNoQ\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 04 Jan 2024 09:18:06 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Invalid password for this login.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Get auth user services",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODQwNGQ5MmRmMDg2OWE0NWM5Yzc2ZiIsInNlcnZpY2UiOiJza2VsZXRvbiIsImlhdCI6MTcwNDM1OTk1MCwiZXhwIjoxNzA0OTY0NzUwfQ.xD80tGXJDFZiRY9dYlcjcNZjjdQuD3Obrb_BYFtAXy0"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:5000/auth/services"
+							},
+							"response": [
+								{
+									"name": "Get auth user services - Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": "http://localhost:5000/auth/services"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Access-Control-Expose-Headers",
+											"value": "Authorization"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "58"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3a-ceedQqk9esRgLWGqPu1h94YNLJY\""
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 04 Jan 2024 09:24:13 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"services\": [\n        \"pos\",\n        \"kds\",\n        \"inventory\",\n        \"menu-builder\",\n        \"hr\"\n    ]\n}"
 								}
 							]
 						}
