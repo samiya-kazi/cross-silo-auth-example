@@ -33,7 +33,10 @@ export async function checkServiceAccess (req: Request, res: Response) {
   try {
     const { userId, service } = req.body;
     const user = await findUserById(userId);
-    if (user && typeof service === 'string') {
+
+    if (user && service === 'skeleton') {
+      res.status(200).send({ status: 'success', auth: true });
+    } else if (user && typeof service === 'string') {
       const serviceAccess = await findUserServiceAccess(user._id);
       if (serviceAccess && (serviceAccess.services.includes("all") || serviceAccess.services.includes(service))) {
         res.status(200).send({ status: 'success', auth: true });

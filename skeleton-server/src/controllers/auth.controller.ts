@@ -7,12 +7,12 @@ import { AuthRequest } from "../interfaces/authRequest.interface";
 
 export async function login (req: Request, res: Response) {
   try {
-    const { email, password, service } = req.body;
+    const { email, password } = req.body;
 
-    if (validateLoginData({ email, password, service })) {
-      const { user } = await hrLogin({ email, password, service });
+    if (validateLoginData({ email, password })) {
+      const { user } = await hrLogin({ email, password });
 
-      const token = jwt.sign({ id: user._id, service }, config.JWT_SECRET, {
+      const token = jwt.sign({ id: user._id, service: 'skeleton' }, config.JWT_SECRET, {
         expiresIn: "7d",
       });
 

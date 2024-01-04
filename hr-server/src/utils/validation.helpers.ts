@@ -9,12 +9,11 @@ export function validateUserData(data: any): data is IUser {
   );
 }
 
-export function validateLoginData(data: any): data is { email: string, password: string, service: string } {
+export function validateLoginData(data: any): data is { email: string, password: string } {
   return (
     typeof data === 'object' &&
     typeof data.email === 'string' &&
-    typeof data.password === 'string' &&
-    typeof data.service === 'string'
+    typeof data.password === 'string'
   );
 }
 
